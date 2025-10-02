@@ -6,10 +6,11 @@
 /*   By: pvolikov <pvolikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 17:21:05 by pvolikov          #+#    #+#             */
-/*   Updated: 2025/10/02 19:16:10 by pvolikov         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:24:30 by pvolikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PIPEX_H
 # define PIPEX_H
 
 # include <unistd.h>

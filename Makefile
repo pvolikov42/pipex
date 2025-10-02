@@ -12,10 +12,10 @@ RM          := rm -f
 #   Sources                                                                     #
 # ----------------------------------------------------------------------------- #
 
-SRCS        := main.c pipex.c utils.c
+SRCS        := pipex.c execute_commands.c utils.c
 OBJS        := $(SRCS:.c=.o)
 
-BONUS_SRCS  := main.c pipex_bonus.c utils.c
+BONUS_SRCS  := pipex_bonus.c utils.c
 BONUS_OBJS  := $(BONUS_SRCS:.c=.o)
 
 # ----------------------------------------------------------------------------- #
