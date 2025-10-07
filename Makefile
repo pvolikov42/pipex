@@ -12,7 +12,7 @@ RM          := rm -f
 #   Sources                                                                     #
 # ----------------------------------------------------------------------------- #
 
-SRCS        := pipex.c execute_commands.c utils.c
+SRCS        := pipex.c execute_command.c utils.c
 OBJS        := $(SRCS:.c=.o)
 
 BONUS_SRCS  := pipex_bonus.c utils.c
@@ -77,9 +77,9 @@ fake :
 #	$(CC) -c $(CFLAGS) $< -o $@
 
 test: 
-	@if [ ! -x $(TGT) ] ; then exit 1; fi 
+	@if [ ! -x $(NAME) ] ; then exit 1; fi 
 	@echo "rubbish" > testfile_out
 	@echo "There is lead here" > testfile_in
-	./$(TGT) testfile_in cat "sed -e s/lead/gold/" testfile_out
+	./$(NAME) testfile_in cat "sed -e s/lead/gold/" testfile_out
 	@cat testfile_out |grep -q gold &>/dev/null && echo OK || echo NOK
 

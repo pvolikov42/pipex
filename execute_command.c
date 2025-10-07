@@ -6,16 +6,17 @@
 /*   By: pvolikov <pvolikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 19:09:41 by pvolikov          #+#    #+#             */
-/*   Updated: 2025/10/02 19:11:43 by pvolikov         ###   ########.fr       */
+/*   Updated: 2025/10/03 12:46:14 by pvolikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+#include "libft/libft.h"
 
 static char	*get_command_path(char *cmd, char **envp)
 {
 	char	**paths;
-	char	*path;
+//	char	*path;
 	char	*full_path;
 	int		i;
 
