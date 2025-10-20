@@ -77,7 +77,7 @@ fake :
 #	$(CC) -c $(CFLAGS) $< -o $@
 
 test: 
-	@if [ ! -x $(NAME) ] ; then exit 1; fi 
+	@if [ ! -x $(NAME) ] ; then exit 7; fi 
 	@echo "rubbish" > testfile_out
 	@echo "There is lead here" > testfile_in
 	./$(NAME) testfile_in cat "sed -e s/lead/gold/" testfile_out
