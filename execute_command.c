@@ -16,7 +16,6 @@
 static char	*get_command_path(char *cmd, char **envp)
 {
 	char	**paths;
-//	char	*path;
 	char	*full_path;
 	int		i;
 

@@ -43,8 +43,7 @@ static void	child_process_2(int pipe_fd[2], char *file2,
 	execute_command(cmd, envp);
 }
 
-void	pipex(char *file1, char *cmd1, char *cmd2,
-	char *file2, char **envp)
+void	pipex(t_pipexargs pa, char **envp)
 {
 	pid_t	pid1;
 	pid_t	pid2;
@@ -56,27 +55,31 @@ void	pipex(char *file1, char *cmd1, char *cmd2,
 	if (pid1 < 0)
 		error_exit("fork");
 	if (pid1 == 0)
-		child_process_1(pipe_fd, file1, cmd1, envp);
+		child_process_1(pipe_fd, pa.file1, pa.cmd1, envp);
 	pid2 = fork();
 	if (pid2 < 0)
 		error_exit("fork");
 	if (pid2 == 0)
-		child_process_2(pipe_fd, file2, cmd2, envp);
+		child_process_2(pipe_fd, pa.file2, pa.cmd2, envp);
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
 }
 
-
 int	main(int argc, char **argv, char **envp)
 {
+	t_pipexargs	pa;
+
 	if (argc != 5)
 	{
 		write(2, "Usage: ./pipex file1 cmd1 cmd2 file2\n", 37);
 		return (1);
 	}
-	pipex(argv[1], argv[2], argv[3], argv[4], envp);
+	pa.file1 = argv[1];
+	pa.cmd1 = argv[2];
+	pa.cmd2 = argv[3];
+	pa.file2 = argv[4];
+	pipex(pa, envp);
 	return (0);
 }
-

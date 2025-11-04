@@ -38,6 +38,7 @@ all: $(NAME)
 $(NAME): $(LIBFT_A) $(OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) $(OBJS) $(LIBFT_A) -o $(NAME)
 
+
 bonus: $(LIBFT_A) $(BONUS_OBJS)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBFT_INC) $(BONUS_OBJS) $(LIBFT_A) -o $(NAME)
 
@@ -82,4 +83,6 @@ test:
 	@echo "There is lead here" > testfile_in
 	./$(NAME) testfile_in cat "sed -e s/lead/gold/" testfile_out
 	@cat testfile_out |grep -q gold &>/dev/null && echo OK || echo NOK
-
+	./$(NAME) ./testfile_in /bin/cat "tr -d de[:blank:]" testfile2_out
+	@cat testfile2_out |grep -q Thris &>/dev/null && echo OK || echo NOK
+	

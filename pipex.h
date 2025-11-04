@@ -21,9 +21,17 @@
 # include <string.h>
 # include <errno.h>
 
-void	pipex(char *file1, char *cmd1, char *cmd2, char *file2, char **envp);
+typedef struct s_pipexargs
+{
+	char	*file1;
+	char	*file2;
+	char	*cmd1;
+	char	*cmd2;
+}	t_pipexargs;
+
+//void	pipex(char *file1, char *cmd1, char *cmd2, char *file2, char **envp);
+void	pipex(t_pipexargs pa, char **envp);
 void	execute_command(char *cmd, char **envp);
 void	error_exit(const char *msg);
 
 #endif
-
