@@ -6,7 +6,7 @@
 /*   By: pvolikov <pvolikov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 17:20:25 by pvolikov          #+#    #+#             */
-/*   Updated: 2025/10/02 19:08:47 by pvolikov         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:34:30 by pvolikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ static void	child_process_2(int pipe_fd[2], char *file2,
 	execute_command(cmd, envp);
 }
 
-void	pipex(t_pipexargs pa, char **envp)
+int	pipex(t_pipexargs pa, char **envp)
 {
 	pid_t	pid1;
 	pid_t	pid2;
 	int		pipe_fd[2];
+	int		status;
 
 	if (pipe(pipe_fd) == -1)
 		error_exit("pipe");
@@ -64,7 +65,10 @@ void	pipex(t_pipexargs pa, char **envp)
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
+	waitpid(pid2, &status, 0);
+	if (WIFEXITED(status))
+		return (WEXITSTATUS(status));
+	return (111);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -80,6 +84,5 @@ int	main(int argc, char **argv, char **envp)
 	pa.cmd1 = argv[2];
 	pa.cmd2 = argv[3];
 	pa.file2 = argv[4];
-	pipex(pa, envp);
-	return (0);
+	return (pipex(pa, envp));
 }
